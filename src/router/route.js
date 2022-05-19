@@ -188,7 +188,7 @@ router.get('/profile', auth('')  ,async (req, res) => {
         gender: req.user.gender,
         city: req.user.city,
         country: req.user.country,
-        DOB: Date(req.user.dateOfBirth)
+        DOB: req.user.dateOfBirth
     });
 });
 

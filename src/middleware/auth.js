@@ -39,7 +39,7 @@ const auth = (render) => {
 
             
         } catch (err) {
-            if(render == 'sign-up-client' || render == 'sign-in' || render == 'join-us') {
+            if(render == 'sign-up-client' || render == 'sign-in' || render == 'join-us' || render == 'join-us') {
                 next();
             } else {
                 res.redirect('/sign-in');
