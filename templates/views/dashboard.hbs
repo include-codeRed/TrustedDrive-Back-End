@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>meta}}
+    <title>Find Your Client</title>
+    {{>style}}
+    {{>fontAwesome}}
+    {{map}}
+</head>
+
+<body>
+    {{>emergency}}
+    <main>
+        {{>nav}}
+        <div class="container container-dashboard">
+            <div class="content content-dashboard">
+                <div class="dashboard-servicing-header">
+                    <h2 class="servicing-header-h2">Find Your Best Client</h2>
+                </div>
+                <div class="dashboard-servicing-content">
+                    {{#each results}}
+                    <div class="servicing-list dashboard-list">
+                        <div class="list-map" style="height: 420px;" id="list-map"></div>
+                        <div class="list-content">
+                            <div class="list-field">
+                                <div class="servicing-servicing-id">
+                                    <div class="label-servicing">Servicing Id</div>
+                                    <div class="value-servicing">{{servicingId}}</div>
+                                </div>
+                                <div class="servicing-model-name">
+                                    <div class="label-servicing">Model Name</div>
+                                    <div class="value-servicing">{{vehicleModel}}</div>
+                                </div>
+                                <div class="servicing-drop-location">
+                                    <div class="label-servicing">Drop Location</div>
+                                    <div class="value-servicing">{{scheduleAddress}}</div>
+                                </div>
+                                <div class="servicing-latitude">
+                                    <div class="label-servicing">latitude</div>
+                                    <div class="value-servicing" id="lat">{{scheduleLocation.lat}}</div>
+                                </div>
+                                <div class="servicing-longitude">
+                                    <div class="label-servicing">longitude</div>
+                                    <div class="value-servicing" id="lng">{{scheduleLocation.lng}}</div>
+                                </div>
+                                <div class="servicing-schedule-date">
+                                    <div class="label-servicing">Schedule Date</div>
+                                    <div class="value-servicing">{{scheduleDate}}</div>
+                                </div>
+                                <div class="servicing-schedule-time">
+                                    <div class="label-servicing">Schedule Time</div>
+                                    <div class="value-servicing">{{scheduleTime}}</div>
+                                </div>
+                                <div class="servicing-description">
+                                    <div class="label-servicing">Description</div>
+                                    <div class="value-servicing">{{vehicleDescription}}</div>
+                                </div>
+                            </div>
+                            <div class="list-btn">
+                                <div class="accept-btn">
+                                    <a href="javascript:void(0)" onclick="patchData('{{servicingId}}','{{../employeeId}}')">Accept</a>
+                                </div>
+                                <div class="reject-btn">
+                                    <a href="#">Reject</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+            </div>
+        </div>
+    </main>
+    {{>script}}
+    {{>mapScript}}
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback={{fun}}&libraries=places&v=weekly"></script>
+</body>
+
+</html>

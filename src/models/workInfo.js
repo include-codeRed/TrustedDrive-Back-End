@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const serviceInfo = new mongoose.Schema({
+const workInfo = new mongoose.Schema({
     clientId: {
         type: String,
         required: true,
@@ -13,34 +13,22 @@ const serviceInfo = new mongoose.Schema({
     employeeId: {
         type: String
     },
-    employeeName: {
-        type: String
-    },
-    employeeEmail: {
-        type: String
-    },
-    employeePhone: {
-        type: String
-    },
-    employeeGarageName: {
-        type: String
-    },
     servicingStatus: {
         type: String,
         required: true,
-        default: "service pending"
+        default: "service accepted"
     },
-    name: {
+    ClientName: {
         type: String,
         required: true,
         minlength: 3,
     },
-    phone: {
+    clientPhone: {
         type: Number,
         required: true,
         min: 10
     },
-    email: {
+    clientEmail: {
         type: String,
         required: true,
         validate(email) {
@@ -102,6 +90,6 @@ const serviceInfo = new mongoose.Schema({
 });
 
 
-const servicing = new mongoose.model('servicingInfo',serviceInfo);
+const work = new mongoose.model('workInfo',workInfo);
 
-module.exports = servicing;
+module.exports = work;

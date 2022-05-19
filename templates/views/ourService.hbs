@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>meta}}
+    <title>our client</title>
+    {{>fontAwesome}}
+    {{>style}}
+    {{>map}}
+</head>
+
+<body>
+    <main>
+        {{>nav}}
+        <div class="container container-dashboard">
+            <div class="content content-dashboard">
+                <div class="dashboard-servicing-header">
+                    <h2 class="servicing-header-h2">Service History</h2>
+                </div>
+                <div class="dashboard-servicing-content">
+                    {{#each results}}
+                    <div class="servicing-list">
+                        <div class="list-map" id="list-map" style="height: 450px;"></div>
+                        <div class="list-content">
+                            <div class="list-field">
+                                <div class="servicing-client-id">
+                                    <div class="label-servicing">Servicing Id</div>
+                                    <div class="value-servicing">{{servicingId}}</div>
+                                </div>
+                                <div class="servicing-status">
+                                    <div class="label-servicing">Servicing Status</div>
+                                    <div class="value-servicing">{{servicingStatus}}</div>
+                                </div>
+                                <div class="servicing-client-name">
+                                    <div class="label-servicing">Name</div>
+                                    <div class="value-servicing">{{name}}</div>
+                                </div>
+                                <div class="servicing-phone">
+                                    <div class="label-servicing">Phone</div>
+                                    <div class="value-servicing">{{phone}}</div>
+                                </div>
+                                <div class="servicing-email">
+                                    <div class="label-servicing">Email</div>
+                                    <div class="value-servicing">{{email}}</div>
+                                </div>
+                                <div class="servicing-model-name">
+                                    <div class="label-servicing">Model Name</div>
+                                    <div class="value-servicing">{{vehicleModel}}</div>
+                                </div>
+                                <div class="servicing-schedule-date">
+                                    <div class="label-servicing">Schedule Date</div>
+                                    <div class="value-servicing">{{scheduleDate}}</div>
+                                </div>
+                                <div class="servicing-schedule-time">
+                                    <div class="label-servicing">Schedule Time</div>
+                                    <div class="value-servicing">{{scheduleTime}}</div>
+                                </div>
+                                <div class="servicing-category">
+                                    <div class="label-servicing">Repair or Replace</div>
+                                    <div class="value-servicing">{{vehicleCategory}}</div>
+                                </div>
+                                <div class="servicing-description">
+                                    <div class="label-servicing">Description</div>
+                                    <div class="value-servicing">{{vehicleDescription}}</div>
+                                </div>
+                            </div>
+                            <div class="list-field list-field-detail">
+                                <div class="servicing-drop-location">
+                                    <div class="label-servicing">Drop Location</div>
+                                    <div class="value-servicing">{{scheduleAddress}}</div>
+                                </div>
+                                <div class="servicing-drop-location">
+                                    <div class="label-servicing">Latitude</div>
+                                    <div class="value-servicing" id="lat">{{scheduleLocation.lat}}</div>
+                                </div>
+                                <div class="servicing-drop-location">
+                                    <div class="label-servicing">longitude</div>
+                                    <div class="value-servicing" id="lng">{{scheduleLocation.lng}}</div>
+                                </div>
+                                <div class="servicing-model-year">
+                                    <div class="label-servicing">Vehicle Model Year</div>
+                                    <div class="value-servicing">{{vehicleYear}}</div>
+                                </div>
+                                <div class="servicing-registration-no">
+                                    <div class="label-servicing">Registration No</div>
+                                    <div class="value-servicing">{{vehicleRegistrationNo}}</div>
+                                </div>
+                                <div class="servicing-serial-no">
+                                    <div class="label-servicing">Serial No</div>
+                                    <div class="value-servicing">{{vehicleSerialNo}}</div>
+                                </div>
+                                <div class="servicing-insurance">
+                                    <div class="label-servicing">Insurance</div>
+                                    <div class="value-servicing">{{vehicleInsurance}}</div>
+                                </div>
+                            </div>
+                            <div class="list-btn list-btn-more-less">
+                                <div class="list-btn-more">
+                                    <a onclick="toggleOurClientLessMore(this)" id="btn-more-less" href="javascript:void(0)">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </main>
+    {{>script}}
+    {{>mapScript}}
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback={{fun}}&libraries=places&v=weekly"></script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 <nav class="nav-bar" id="nav-bar">
     <div class="nav-bar-menu">
         <div class="nav-bar-logo">
-            <a class="nav-link" id="link-brand" href="#">TRUSTED DRIVE</a>
+            <a class="nav-link" id="link-brand" href="/">TRUSTED DRIVE</a>
         </div>
         <div class="nav-menu">
             <div class="menu" onclick="menu(this)">
@@ -12,10 +12,25 @@
         </div>
     </div>
     <div class="nav-bar-link" id="nav-bar-link-id">
+        {{#if client}}
+        <a class="nav-link" id="link-home" href="/home"></i>HOME</a>
+        <a class="nav-link" id="link-your-vehicle" href="/repair-your-vehicle">SERVICING</a>
+        <a class="nav-link" id="link-our-service" href="/our-service">SERVICING STATUS</a>
+        <a class="nav-link" id="link-profile" href="/profile">{{login.name}}</a>
+        <a class="nav-link" id="link-sing-out" href="/log-out">SIGN-OUT</a>
+        {{/if}}
+        {{#if employee}}
+        <a class="nav-link" id="link-home" href="/home"></i>HOME</a>
+        <a class="nav-link" id="link-about" href="/dashboard"></i>FIND CLIENT</a>
+        <a class="nav-link" id="link-sign-in" href="/our-client">VIEW CLIENT</a>
+        <a class="nav-link" id="link-profile" href="/profile">{{login.name}}</a>
+        <a class="nav-link" id="link-sing-out" href="/log-out">SIGN-OUT</a>
+        {{/if}}
+        {{#if none}}
         <a class="nav-link" id="link-home" href="/home"></i>HOME</a>
         <a class="nav-link" id="link-about" href="/about"></i>ABOUT</a>
         <a class="nav-link" id="link-sign-in" href="/sign-in">SIGN IN</a>
-        <a class="nav-link" id="link-join-us" href="/sign-up">JOIN US</a>
-        <a class="nav-link" id="link-emergencies" href="/emergencies">EMERGENCIES</a>
+        <a class="nav-link" id="link-join-us" href="/join-us">JOIN US</a>
+        {{/if}}
     </div>
 </nav>

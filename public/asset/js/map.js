@@ -37,11 +37,23 @@ function initMap() {
         map.setZoom(15);
     });
 
+    map.addListener("center_changed", () => {
+        setTimeout(() => {
+            let elemLat = document.getElementById('lat');
+                let elemLng = document.getElementById('lng');
+    
+                let lat = map.getCenter().lat();
+                let lng = map.getCenter().lng();
+    
+                elemLat.value = lat;
+                elemLng.value = lng;
+        },1000);
+    });
 
     map.addListener("dragend", () => {
         window.setTimeout(() => {
             setOnMap();
-        },3000)
+        },1000)
     });
 
     function locating() {
@@ -86,23 +98,28 @@ function initMap() {
 
     let dropLocation = document.getElementById("form-schedule-address");
 
-    dropLocation.addEventListener('input', searchLocation);
+    const options = {
+        componentRestrictions: { country: "In" },
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+
+    dropLocation.addEventListener('change', ()=> {
+        setTimeout(() => {
+            searchLocation();
+        },2000);
+    });
+    dropLocation.addEventListener('input', () => {
+        const autocomplete = new google.maps.places.Autocomplete(dropLocation, options);
+    });
 
     function searchLocation() {
         var request = {
             query: dropLocation.value,
             fields: ['name', 'geometry'],
         };
-
         service = new google.maps.places.PlacesService(map);
-
-        const options = {
-            componentRestrictions: { country: "In" },
-            fields: ["address_components", "geometry", "icon", "name"],
-            strictBounds: false,
-            types: ["establishment"],
-          };
-          const autocomplete = new google.maps.places.Autocomplete(dropLocation, options);
 
         service.findPlaceFromQuery(request, (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK && results) {
@@ -137,6 +154,8 @@ function initMap() {
 }
 
 
+// note that
+// pass the map object to all the function above and then try to use it
 
 
 
@@ -173,3 +192,92 @@ function initMap() {
 //         }
 //     });
 // }
+
+
+function addMap() {
+    let elemMap = document.querySelectorAll('.servicing-list #list-map');
+    let elemLat = document.querySelectorAll('.servicing-list #lat');
+    let elemLng = document.querySelectorAll('.servicing-list #lng');
+
+    console.log(elemMap[0]);
+
+    elemMap.forEach((elem,i) => {
+        console.log(elem);
+        let position = {
+            lat: Number(elemLat[i].innerHTML),
+            lng: Number(elemLng[i].innerHTML)
+        };
+        let map = new google.maps.Map(elem, {
+            position,
+            zoom: 8
+        });
+
+        new google.maps.Marker({
+            position,
+            map,
+            title: "Servicing Location",
+          });
+    
+        map.setCenter(position);
+    });
+
+}
+
+function addMapDashBoard() {
+    let elemMap = document.querySelectorAll('.dashboard-list #list-map');
+    let elemLat = document.querySelectorAll('.dashboard-list #lat');
+    let elemLng = document.querySelectorAll('.dashboard-list #lng');
+
+    console.log(elemMap[0]);
+
+    elemMap.forEach((elem,i) => {
+        console.log(elem);
+        let position = {
+            lat: Number(elemLat[i].innerHTML),
+            lng: Number(elemLng[i].innerHTML)
+        };
+        let map = new google.maps.Map(elem, {
+            position,
+            zoom: 8
+        });
+
+        new google.maps.Marker({
+            position,
+            map,
+            title: "Servicing Location",
+          });
+    
+        map.setCenter(position);
+    });
+
+}
+
+
+function addMapOurClient() {
+    let elemMap = document.querySelectorAll('.our-client-list #list-map');
+    let elemLat = document.querySelectorAll('.our-client-list #lat');
+    let elemLng = document.querySelectorAll('.our-client-list #lng');
+
+    console.log(elemMap[0]);
+
+    elemMap.forEach((elem,i) => {
+        console.log(elem);
+        let position = {
+            lat: Number(elemLat[i].innerHTML),
+            lng: Number(elemLng[i].innerHTML)
+        };
+        let map = new google.maps.Map(elem, {
+            position,
+            zoom: 8
+        });
+
+        new google.maps.Marker({
+            position,
+            map,
+            title: "Servicing Location",
+          });
+    
+        map.setCenter(position);
+    });
+
+}

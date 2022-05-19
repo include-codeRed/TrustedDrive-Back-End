@@ -3,12 +3,13 @@ const bcryptjs = require('bcryptjs');
 
 
 
-const user = require('../models/userInfo');
+const user = require('../models/userInfoEmployee');
 const router = express.Router();
 
-router.route('/sign-up')
+router.route('/sign-up-employee')
 .post(async (req,res) => {
     try {
+        console.log(req.body);
         const newUser = new user(req.body);
         const token = await newUser.generateAuthToken();
         const result = await newUser.save();
@@ -22,9 +23,11 @@ router.route('/sign-up')
 
         console.log(authCookies);
 
-        res.status(201).render("index",{name: result.name});
+        res.status(201).redirect("/profile");
     } catch(err) {
-        res.status(400).send("Error: while saving data!...")
+        res.status(400).render('signup_client', {
+            message: "Something Went Wrong!.."
+        });
         console.log(err);
     }
 });
@@ -35,25 +38,21 @@ router.route('/sign-in').post(async (req,res) => {
         const pass = req.body.password;
         
         const result = await user.findOne({email});
-        
         const isPassMatch = await bcryptjs.compare(pass,result.originalPassword);
-        console.log(isPassMatch);
+
         if(isPassMatch) {
             const token = await result.generateAuthToken()
             res.cookie('auth',token, {
                 expires: new Date(Date.now() + 5000000),
                 httpOnly: true
             });
-            const authCookies = req.cookies.auth;
-            console.log(authCookies);
 
-
-            res.status(200).render("index", {name: result.name});
+            res.status(200).redirect('/profile');
         } else {
-            res.status(400).redirect("/sign-in");
+            res.status(400).render("loginClient", {
+                message: "Email or Password Not Match"
+            });
         }
-
-        console.log(result);
     } catch (err) {
         res.status(400).send("Error: while sing-in");
         console.log(err);
@@ -61,25 +60,47 @@ router.route('/sign-in').post(async (req,res) => {
 })
 
 
-router.route('/').get(async (req, res) => {
+router.route('/user').get(async (req, res) => {
     try{
         const result = await user.find();
         res.status(200).send(result);
     }catch(err) {
-        res.status(400).send(`${er} : can't fetch the data`)
+        res.status(400).send(`${err} : can't fetch the data`)
     }
 });
 
-router.route('/:id')
-.get(async (req, res) => {
-    const _id = req.params.id;
-    try {
-        const result = await user.findById(_id);
+router.route('/user/:id').get(async (req, res) => {
+    try{
+        const _id = req.params.id;
+        const result = await user.findOne({_id});
         res.status(200).send(result);
-    } catch (error) {
-        res.status(400).send(`${er} : can't fetch the data`)
+    }catch(err) {
+        res.status(400).send({message: "No Data Found"})
     }
-})
+});
+
+router.route('/email/:email')
+.get(async (req, res) => {
+    const email = req.params.email;
+    console.log(email);
+    try {
+        const result = await user.findOne({email});
+        res.status(200).send({email: result.email});
+    } catch (error) {
+        res.status(400).send({email: "not found"});
+    }
+});
+
+router.route('/phone/:phone')
+.get(async (req, res) => {
+    const phone = req.params.phone;
+    try {
+        const result = await user.findOne({phone});
+        res.status(200).send({phone: result.phone});
+    } catch (error) {
+        res.status(400).send({phone: "not found"});
+    }
+});
 
 
 

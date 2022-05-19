@@ -2,15 +2,14 @@
 <html lang="en">
 
 <head>
-    <script src="https://kit.fontawesome.com/b8afffe50a.js" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>meta}}
     <title>Profile</title>
-    <link rel="stylesheet" href="/asset/css/index.css">
+    {{>fontAwesome}}
+    {{>style}}
 </head>
 
 <body>
+    {{>emergency}}
     <main>
         {{>nav}}
         <div class="container container-profile">
@@ -22,19 +21,12 @@
                                 class="profile-dp" id="profile-dp" alt="profile-dp-image">
                         </div>
                         <div class="content-profile-name">
-                            <span class="profile-name" id="profile-name">Piyush Raj</span>
+                            <span class="profile-name" id="profile-name">{{name}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="content-information">
-                    <div class="booking-history">
-                        <div class="content-booking-heading">
-                            <h2 class="heading-booking">Booking History</h2>
-                        </div>
-                        <div class="booking-details" id="booking-details">
-
-                        </div>
-                    </div>
+                    
                     <div class="about-me">
                         <div class="content-about-me-heading">
                             <h2 class="heading-about-me">About Me</h2>
@@ -57,7 +49,7 @@
                                     </span>
                                 </div>
                                 <div class="content-about-value">
-                                    <span class="title-value-email" id="title-value-email">piyushraj240@gmail.com</span>
+                                    <span class="title-value-email" id="title-value-email">{{email}}</span>
                                 </div>
                             </div>
                             <div class="about-info">
@@ -67,7 +59,7 @@
                                     </span>
                                 </div>
                                 <div class="content-about-value">
-                                    <span class="title-value-phone" id="title-value-phone">7363980230</span>
+                                    <span class="title-value-phone" id="title-value-phone">{{phone}}</span>
                                 </div>
                             </div>
                             <div class="about-info">
@@ -77,7 +69,7 @@
                                     </span>
                                 </div>
                                 <div class="content-about-value">
-                                    <span class="title-value-dob" id="title-value-dob">25-08-2000</span>
+                                    <span class="title-value-dob" id="title-value-dob">{{DOB}}</span>
                                 </div>
                             </div>
                             <div class="about-info">
@@ -87,7 +79,7 @@
                                     </span>
                                 </div>
                                 <div class="content-about-value">
-                                    <span class="title-value-gender" id="title-value-gender">Male</span>
+                                    <span class="title-value-gender" id="title-value-gender">{{gender}}</span>
                                 </div>
                             </div>
                             <div class="about-info">
@@ -97,16 +89,24 @@
                                     </span>
                                 </div>
                                 <div class="content-about-value">
-                                    <span class="title-value-address" id="title-value-address">Aurangabad, Bihar,
-                                        India.</span>
+                                    <span class="title-value-address" id="title-value-address">{{city}} {{country}}.</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="booking-history">
+                        <div class="content-booking-heading">
+                            <h2 class="heading-booking">Booking History</h2>
+                        </div>
+                        <div class="booking-details" id="booking-details">
+
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </main>
 </body>
-
+{{>script}}
 </html>

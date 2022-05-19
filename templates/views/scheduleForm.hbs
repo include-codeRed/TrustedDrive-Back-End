@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>meta}}
     <title>Schedule Your Service Form</title>
-    <link rel="stylesheet" href="/asset/css/index.css">
-    <link rel="stylesheet" href="/asset/css/map.css">
+    {{>fontAwesome}}
+    {{>style}}
+    {{>map}}
 </head>
 
 <body>
@@ -19,33 +18,38 @@
                     <h2 class="content-header-h2">Schedule Your Servicing</h2>
                 </div>
                 <div class="content-panel">
-                    <div class="content-panel-account active">
+                    <div class="content-panel-account active" id="content-panel-account">
                         <span>User Info</span>
                     </div>
-                    <div class="content-panel-personal">
+                    <div class="content-panel-personal" id="content-panel-personal">
                         <span>Vehicle Info</span>
                     </div>
-                    <div class="content-panel-personal">
+                    <div class="content-panel-personal" id="content-panel-work">
                         <span>Scheduling Info</span>
                     </div>
                 </div>
                 <div class="content-schedule-servicing-form">
-                    <form action="/schedule-servicing" method="post">
+                    <form action="/servicing/schedule" method="post">
                         <div class="content-form-message">
-                            <p class="form-message-description">Enter Your Details Below.</p>
+                            <p class="form-message-description" style="{{#if message}} color: #ec6868 {{/if}}"
+                                id="form-message-description">{{#if message}} {{message}} {{else}}Enter Your Details
+                                Below.{{/if}}</p>
                         </div>
                         <div class="content-form">
                             <div class="content-form-user-details" id="content-form-user-details">
                                 <div class="content-form-name">
-                                    <input type="text" name="name" id="form-full-name" class="form-full-name" required>
+                                    <input type="text" name="name" id="form-full-name" value="{{name}}"
+                                        class="form-full-name" required>
                                     <span class="form-field-label">Full Name</span>
                                 </div>
                                 <div class="content-form-email">
-                                    <input type="email" name="email" id="form-email" class="form-email" required>
+                                    <input type="email" name="email" id="form-email" value="{{email}}"
+                                        class="form-email" required>
                                     <span class="form-field-label">Email</span>
                                 </div>
                                 <div class="content-form-phone">
-                                    <input type="number" name="phone" id="form-phone" class="form-phone" required>
+                                    <input type="number" name="phone" id="form-phone" value="{{phone}}"
+                                        class="form-phone" required>
                                     <span class="form-field-label">Phone</span>
                                 </div>
                             </div>
@@ -90,10 +94,12 @@
                                         <span class="form-field-label form-field-label-radio">category</span>
                                     </div>
                                     <div class="content-form-vehicle-category-input">
-                                        <input type="radio" name="vehicleCategory" id="form-vehicle-category-repair"
+                                        <input type="radio" name="vehicleCategory" value="Repair"
+                                            id="form-vehicle-category-repair"
                                             class="form-vehicle-category form-vehicle-category-repair" required>
                                         <label for="form-vehicle-category-repair">Repair</label>
-                                        <input type="radio" name="vehicleCategory" id="form-vehicle-category-replace"
+                                        <input type="radio" name="vehicleCategory" value="Replace"
+                                            id="form-vehicle-category-replace"
                                             class="form-vehicle-category form-vehicle-category-replace" required>
                                         <label for="form-vehicle-category-replace">Replace</label>
                                     </div>
@@ -112,6 +118,11 @@
                                     <input type="text" name="scheduleAddress" id="form-schedule-address"
                                         class="form-schedule-address" required placeholder="">
                                     <span class="form-field-label">Drop Location</span>
+
+                                    <div class="lat-lng" style="display: flex;">
+                                        <input type="text" style="width: 50%" name="lat" id="lat" placeholder="Latitude">
+                                        <input type="text" style="width: 50%" name="lng" id="lng" placeholder="longitude">
+                                    </div>
                                 </div>
                                 <div class="content-form-schedule-date">
                                     <div class="content-form-schedule-date-label">
@@ -130,9 +141,9 @@
                                         <select name="scheduleTime" id="form-schedule-time" class="form-schedule-time"
                                             required>
                                             <option value="none">--Select--</option>
-                                            <option value="10-to-12">10:00 AM to 12:00 PM</option>
-                                            <option value="12-to-3">12:00 PM to 03:00 PM</option>
-                                            <option value="3-to-6">03:00 PM to 06:00 PM</option>
+                                            <option value="10:00 AM to 12:00 PM">10:00 AM to 12:00 PM</option>
+                                            <option value="12:00 PM to 03:00 PM">12:00 PM to 03:00 PM</option>
+                                            <option value="03:00 PM to 06:00 PM">03:00 PM to 06:00 PM</option>
                                         </select>
                                     </div>
                                 </div>
@@ -140,8 +151,9 @@
                         </div>
                         <div class="content-submit-button">
                             <div class="content-submit-btn">
-                                <button onclick="scheduleForm()" id="next-btn">Next</button>
-                                <input type="submit" value="Submit" id="submit-btn" class="submit-btn">
+                                <input type="button" onclick="scheduleForm()" value="Next" class="btn next-btn"
+                                    id="next-btn">
+                                <input type="submit" value="Submit" id="submit-btn" class="btn submit-btn">
                             </div>
                         </div>
                     </form>
@@ -149,10 +161,9 @@
             </div>
         </div>
     </main>
-    <script src="/asset/js/map.js"></script>
-    <script src="/asset/js/index.js"></script>
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDt3ZsPoeSvDCttvQURP5FsmCVxoLEV4&callback=initMap&libraries=places&v=weekly"></script>
+    {{>mapScript}}
+    {{>script}}
+    {{>googleMapApi}}
 </body>
 
 </html>

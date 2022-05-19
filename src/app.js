@@ -24,13 +24,15 @@ app.set("views",viewsPath);
 hbs.registerPartials(partialsPath);
 
 
-const userRouter = require('./router/userRegistration');
+const userClientRouter = require('./router/userRegistrationClient');
+const userEmployeeRouter = require('./router/userRegistrationEmployee');
 const router = require('./router/route');
 const servicing = require('./router/servicingRoute');
 
 app.use(express.static(staticPath));
 
-app.use('/user',userRouter);
+app.use('/client',userClientRouter); 
+app.use('/employee',userEmployeeRouter); 
 app.use('/servicing',servicing);
 app.use(router);
 
@@ -42,4 +44,13 @@ app.get("*", (req,res) => {
 
 app.listen(process.env.HOST_PORT_NUMBER,() => {
     console.log(`Listing to port: http://${process.env.HOST_NAME}:${process.env.HOST_PORT_NUMBER}`);
-})
+});
+
+
+// service pending
+// service accepted 
+// service on the way 
+// service completed
+
+
+// http://app.digram.net/

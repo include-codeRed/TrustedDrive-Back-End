@@ -2,93 +2,64 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>meta}}
     <title>TRUSTED DRIVE</title>
-    <script src="https://kit.fontawesome.com/b8afffe50a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./asset/css/index.css">
+    {{>fontAwesome}}
+    <link rel="stylesheet" href="/asset/css/style.css">
+    {{>style}}
+    
 </head>
 
 <body>
+     {{>emergency}}
     <main>
         {{>nav}}
-        <header class="container-header">
-            <div class="container-header-content">
-                <div class="container-head" id="header-content-heading">
-                    <h1>SPREADING JOY OF BEST DRIVE <span id="car">🚗</span>.</h1>
-                </div>
-                <div class="container-head" id="header-content-para">
-                    <p>Get best serives for your vehicles done by TRUSTED DRIVE. Now integrated with support during
-                        emergencies, new job opportunity, and more, all in one place.
-                    </p>
-                </div>
-                <div class="container-head" id="header-content-button">
-                    <a class="head-join-us head-link" href="#">JOIN US</a>
-                    <a class="head-emergencies head-link" href="#">EMERGENCIES</a>
-                </div>
-            </div>
-            <div class="container-header-images">
+        <header class="head">
+        <div class="head-text">
+            <h1 class="head1">WELCOME TO A NEW PROFESSIONAL COMMUNITY</h1>
+            <a class="head-button" href="#">
+                <span class="head-text-link-text">Post a job</span> 
+                <span class="head-text-link-symb">></span>
+            </a>
+            <a class="head-button" href="#">
+                <span class="head-text-link-text">Search for a job</span> 
+                <span class="head-text-link-symb">></span>
+            </a>
+            <a class="head-button" href="#">
+                <span class="head-text-link-text">Find a person you know</span> 
+                <span class="head-text-link-symb">></span>
+            </a>
+        </div>
+        <div class="head-img">
+            <img src="./asset/image/autoserviceonline.jpg"
+                alt="Oops...This page could not be loaded at this moment">
+        </div>
+    </header>
+        <section id="feature">
+        <div class="feature-content">
+            <h2 id="feature2">Let the right people know you're open to WORK</h2>
+            <p id="para1"><b> With the Open To Work feature, you can privately tell recruiters or publicly share with
+                    the
+                    LinkedIn community that you are looking for new job opportunities </b></p>
+        </div>
+        <div class="picture" style="padding: 0;">
+            <img src="./asset/image/road.jpg"
+                alt="Picture can't be loaded at the moment.... Sorry for inconvenience.">
+        </div>
+    </section>
 
-            </div>
-        </header>
-
-        <section class="sec-web">
-            <div id="sec-web-content">
-                <article class="web-content-point">
-                    <div class="web-content-animation">
-
-                    </div>
-                    <div>
-                        <h1 class="web-content-heading">
-
-                        </h1>
-                        <p class="web-content-para">
-
-                        </p>
-                    </div>
-
-
-                </article>
-
-                <article class="web-content-point">
-                    <div class="web-content-animation">
-
-                    </div>
-                    <div>
-                        <h1 class="web-content-heading">
-
-                        </h1>
-                        <p class="web-content-para">
-
-                        </p>
-                    </div>
-
-                </article>
-                <article class="web-content-point">
-                    <div class="web-content-animation">
-
-                    </div>
-                    <div>
-                        <h1 class="web-content-heading">
-
-                        </h1>
-                        <p class="web-content-para">
-
-                        </p>
-                    </div>
-
-                </article>
-
-            </div>
-            <div id="sec-web-image">
-
-            </div>
-        </section>
-
+    <section id="connect">
+        <div class="connect-picture">
+            <img src="./asset/image/reparing.jpeg"
+                alt="Picture can't be loaded at the moment.... Sorry for inconvenience.">
+        </div>
+        <div class="connect-content">
+            <h2 id="connect2"><b>Connect with People who can Help</b></h2>
+            <a href="#">Find people you know</a>
+        </div>
+    </section>
+    {{>footer}}
     </main>
-
-    <script src="./asset/js/index.js"></script>
 </body>
-
+{{>script}}
 </html>

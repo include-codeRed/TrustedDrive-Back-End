@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>meta}}
+    <title>Schedule Your Service Form</title>
+    {{>fontAwesome}}
+    {{>style}}
+    {{>map}}
+</head>
+
+<body>
+    <main>
+        {{>nav}}
+        <div class="container container-form container-service-form">
+            <div class="content content-form content-service-form">
+                <div class="content-header content-header-service-form">
+                    <h2 class="content-header-h2">Schedule Your Servicing</h2>
+                </div>
+                <div class="content-panel">
+                    <div class="content-panel-account active">
+                        <span>User Info</span>
+                    </div>
+                    <div class="content-panel-personal">
+                        <span>Vehicle Info</span>
+                    </div>
+                </div>
+                <div class="content-schedule-servicing-form">
+                    <form action="/schedule-servicing" method="post">
+                        <div class="content-form-message">
+                            <p class="form-message-description">Enter Your Details Below.</p>
+                        </div>
+                        <div class="content-form">
+                            <div class="content-form-user-details" id="content-form-user-details">
+                                <div class="content-form-name">
+                                    <input type="text" name="name" id="form-full-name" class="form-full-name" required>
+                                    <span class="form-field-label">Full Name</span>
+                                </div>
+                                <div class="content-form-email">
+                                    <input type="email" name="email" id="form-email" class="form-email" required>
+                                    <span class="form-field-label">Email</span>
+                                </div>
+                                <div class="content-form-phone">
+                                    <input type="number" name="phone" id="form-phone" class="form-phone" required>
+                                    <span class="form-field-label">Phone</span>
+                                </div>
+                            </div>
+                            <div class="content-form-vehicle-info" id="content-form-vehicle-info">
+                                <div class="content-form-schedule-set-map" id="content-form-schedule-set-map">
+
+                                </div>
+                                <div class="content-form-schedule-address">
+                                    <input type="text" name="scheduleAddress" id="form-schedule-address"
+                                        class="form-schedule-address" required placeholder="">
+                                    <span class="form-field-label">Drop Location</span>
+                                </div>
+                                <div class="content-form-vehicle-model">
+                                    <input type="text" name="vehicleModel" id="form-vehicle-model"
+                                        class="form-vehicle-model" required>
+                                    <span class="form-field-label">Model Name</span>
+                                </div>
+                                <div class="content-form-vehicle-service-description">
+                                    <label class="form-field-label form-field-label-textarea">Vehicle Problem Description</label>
+                                    <textarea name="vehicleDescription" id="form-vehicle-service-description"
+                                        class="form-vehicle-service-description" rows="8" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-submit-button">
+                            <div class="content-submit-btn">
+                                <button onclick="scheduleForm()" id="next-btn">Next</button>
+                                <input type="submit" value="Submit" id="submit-btn" class="submit-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{>mapScript}}
+    {{>script}}
+    <script async src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap&libraries=places&v=weekly"></script>
+</body>
+</html>
