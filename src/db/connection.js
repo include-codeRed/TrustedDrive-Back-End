@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://${process.env.HOST_NAME}:${process.env.DATABASE_PORT_NUMBER}/${process.env.COLLECTION_NAME}`, {
+mongoose.connect(`mongodb://${process.env.HOST_NAME}:${process.env.DATABASE_PORT_NUMBER}/${process.env.COLLECTION_NAME}`,  {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {

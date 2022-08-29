@@ -41,7 +41,7 @@ router.route('/sign-in').post(async (req,res) => {
         const isPassMatch = await bcryptjs.compare(pass,result.originalPassword);
 
         if(isPassMatch) {
-            const token = await result.generateAuthToken()
+            const token = await result.generateAuthToken();
             res.cookie('auth',token, {
                 expires: new Date(Date.now() + 5000000),
                 httpOnly: true
